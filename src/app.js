@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser");
 const port = process.env.PORT || 9000;
 const dburl = process.env.DBURL;
 const userrouter = require("../router/userrouter");
+const adminrouter = require("../router/adminrouter");
 const publicpath = path.join(__dirname, "../public");
 const viewpath = path.join(__dirname, "../templetes/view");
 const partialpath = path.join(__dirname, "../templetes/partials");
@@ -34,3 +35,4 @@ mongoose
   });
 
 app.use("/", userrouter);
+app.use("/", adminrouter);
