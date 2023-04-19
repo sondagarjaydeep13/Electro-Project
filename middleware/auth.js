@@ -8,6 +8,7 @@ const auth = async (req, res, next) => {
     if (isVerify) {
       req.user = userdata;
       req.token = Token;
+      console.log(Token);
       next();
     }
   } catch (error) {

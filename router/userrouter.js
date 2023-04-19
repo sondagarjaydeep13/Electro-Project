@@ -56,8 +56,8 @@ router.post("/userlogin", async (req, res) => {
   const email = req.body.email;
   const pass = req.body.pass;
   try {
-    const { compare, userdata } = await controller.verify(email, pass);
-    if (compare == true) {
+    const { compare1, userdata } = await controller.userbcrypt(email, pass);
+    if (compare1 == true) {
       const Token = await userdata.generateToken();
       // console.log(Token);
       res.cookie("jwt", Token);

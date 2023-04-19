@@ -20,6 +20,7 @@ app.set("views", viewpath);
 hbs.registerPartials(partialpath);
 app.use(express.static(publicpath));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(cookieParser());
 app.listen(port, () => {
   console.log("Server Running on port " + port);
