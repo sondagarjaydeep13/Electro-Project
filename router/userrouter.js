@@ -29,7 +29,7 @@ router.get("/store", (req, res) => {
     res.render("store", { msg: "My Account" });
   }
 });
-router.get("/cart", (req, res) => {
+router.get("/cart", auth, (req, res) => {
   const Token = req.cookies.jwt;
   if (Token) {
     res.render("cart", { msglogout: "Logout" });
@@ -81,7 +81,7 @@ router.get("/logout", auth, async (req, res) => {
 
   try {
     userdata.Tokens = await userdata.Tokens.filter((e) => {
-      e.token != Token;
+      return e.token != Token;
     });
     await userdata.save();
     res.clearCookie("jwt");

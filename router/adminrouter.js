@@ -6,6 +6,21 @@ const adminauth = require("../middleware/adminauth");
 router.get("/admin", (req, res) => {
   res.render("adminlogin");
 });
+router.get("/dashboard", adminauth, (req, res) => {
+  res.render("dashboard");
+});
+router.get("/products", adminauth, (req, res) => {
+  res.render("adminproducts");
+});
+router.get("/addproductpage", adminauth, (req, res) => {
+  res.render("add-product");
+});
+router.get("/accounts", adminauth, (req, res) => {
+  res.render("accounts");
+});
+router.get("/edit-product", adminauth, (req, res) => {
+  res.render("edit-product");
+});
 router.post("/addadmin", async (req, res) => {
   try {
     const admindata = await Admin(req.body).save();
@@ -41,7 +56,7 @@ router.get("/adminlogout", adminauth, async (req, res) => {
   const token = req.token;
   try {
     admin.Tokens = await admin.Tokens.filter((e) => {
-      e.Token != token;
+      return e.Token != token;
     });
 
     await admin.save();

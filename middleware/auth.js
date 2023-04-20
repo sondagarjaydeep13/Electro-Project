@@ -8,11 +8,13 @@ const auth = async (req, res, next) => {
     if (isVerify) {
       req.user = userdata;
       req.token = Token;
-      console.log(Token);
+      // console.log(Token);
       next();
+    } else {
+      res.render("login", { loginmsg: "Pls login here" });
     }
   } catch (error) {
-    console.log(error);
+    res.render("login", { loginmsg: "Pls login here" });
   }
 };
 
