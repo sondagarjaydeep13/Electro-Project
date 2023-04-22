@@ -17,7 +17,7 @@ const adminauth = async (req, res, next) => {
     }
   } catch (error) {
     res.render("adminlogin", {
-      loginmsg: "Invalide Authorize  pls login first..!!!",
+      loginmsg: "Invalide Authorize  pls login first...!!!",
     });
   }
 };

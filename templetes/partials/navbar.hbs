@@ -12,9 +12,9 @@
         
       }
     </style>
-  
+   
   </head>
-  <body>
+  <body  onload="mydate()">
        <!-- HEADER -->
     <header>
       <!-- TOP HEADER -->
@@ -28,7 +28,7 @@
                {{city}}</a></li>
           </ul>
           <ul class="header-links pull-right">
-          
+            <li><a id="currentdate" href="#"><i class="fa "></i> </a></li>
             <li><a href="login"><i class="fa "></i> {{msg}}</a></li>
              <li><a href="logout"><i class="fa "></i> {{msglogout}}</a></li>
           </ul>
@@ -130,5 +130,6 @@
       <!-- /container -->
     </nav>
 </div>
+   <script src="/js/myjs.js"></script>
   </body>
 </html>
