@@ -3,22 +3,30 @@ const router = express.Router();
 const User = require("../model/User");
 const controller = require("../controller/usercontroller");
 const jwt = require("jsonwebtoken");
+const Product = require("../model/Adminproduct");
 const auth = require("../middleware/auth");
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   const Token = req.cookies.jwt;
-  if (Token) {
-    res.render("index", { msglogout: "Logout" });
-  } else {
-    res.render("index", { msg: "My Account" });
+
+  try {
+    const ProductData = await Product.find();
+    if (Token) {
+      res.render("index", { msglogout: "Logout", pdata: ProductData });
+    } else {
+      res.render("index", { msg: "My Account", pdata: ProductData });
+    }
+  } catch (error) {
+    console.log(error);
   }
 });
 
-router.get("/product", (req, res) => {
+router.get("/product", async (req, res) => {
   const Token = req.cookies.jwt;
+  const ProductData = await Product.find();
   if (Token) {
-    res.render("product", { msglogout: "Logout" });
+    res.render("product", { msglogout: "Logout", pdata: ProductData });
   } else {
-    res.render("product", { msg: "My Account" });
+    res.render("product", { msg: "My Account", pdata: ProductData });
   }
 });
 router.get("/store", (req, res) => {
