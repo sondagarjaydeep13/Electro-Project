@@ -131,7 +131,7 @@ router.get("/logout", auth, async (req, res) => {
     res.clearCookie("jwt");
     const allProduct = await controller.allproduct();
 
-    res.render("index", { msg: "My Account", pdata: allProduct });
+    res.redirect("/", 302, { msg: "My Account", pdata: allProduct });
   } catch (error) {
     console.log(error);
   }
