@@ -29,7 +29,11 @@ app.listen(port, () => {
 });
 
 mongoose
-  .connect(dburl)
+  .connect(dburl ?? "mongodb+srv://sondagarjaydeep13:Jaydeep123@cluster0.jvvwc8q.mongodb.net/Eshop_project-Two?retryWrites=true&w=majority", {
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
+    // useCreateIndex: true,
+  })
   .then(() => {
     console.log("E-shop-project-Two database connect");
   })
