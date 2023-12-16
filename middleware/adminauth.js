@@ -4,7 +4,7 @@ const adminauth = async (req, res, next) => {
   const Token = req.cookies.ajwt;
 
   try {
-    const TokenVerify = await jwt.verify(Token, process.env.ASKEY);
+    const TokenVerify = jwt.verify(Token, process.env.ASKEY);
     if (TokenVerify) {
       const admindata = await Admin.findOne({ _id: TokenVerify._id });
       req.admin = admindata;

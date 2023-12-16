@@ -14,12 +14,12 @@ const adminSchema = new mongoose.Schema({
 
 adminSchema.pre("save", async function () {
   if (this.isModified("pass")) {
-    this.pass = await bcrypt.hash(this.pass, 12);
+    this.pass = bcrypt.hash(this.pass, 12);
   }
 });
 adminSchema.methods.generateToken = async function () {
   try {
-    const Token = await jwt.sign({ _id: this._id }, process.env.ASKEY);
+    const Token = jwt.sign({ _id: this._id }, process.env.ASKEY);
     this.Tokens = await this.Tokens.concat({ Token: Token });
 
     await this.save();
