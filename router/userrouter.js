@@ -98,6 +98,7 @@ router.post("/userlogin", async (req, res) => {
   const pass = req.body.pass;
   try {
     const { compare1, userdata } = await controller.userbcrypt(email, pass);
+    console.log(compare1);
     if (compare1 == true) {
       const Products = await controller.ProductData();
       const Token = await userdata.generateToken();
